@@ -221,11 +221,15 @@ class EnhancedAAMLFramework(AAMLFramework):
             )
         
         # Detect threat actors
-        interaction_history = self._get_security_context(request.entity_id).interaction_history
-        threat_actor, confidence = await self.threat_actor_detector.detect_threat_actor(
-            list(interaction_history)[-20:],  # Last 20 interactions
-            request.metadata
-        )
+        interaction_id = self._generate_interaction_id(request.entity_id)
+  interaction_history =
+  self._get_security_context(request.entity_id).interaction_history
+  threat_actor, confidence = await
+  self.threat_actor_detector.detect_threat_actor(
+      list(interaction_history)[-20:],  # Last 20 interactions
+      request.metadata
+  )
+
         
         if threat_actor and confidence > 0.7:
             logger.warning(
