@@ -175,7 +175,7 @@ class AdvancedCapabilityAssessor:
             return CapabilityMetrics(**json.loads(cached_result))
         
         # Extract embeddings from interactions
-        embeddings = await self._extract_embeddings(interactions)
+       embeddings = await self._extract_embeddings(interactions)
         
         # Analyze behavioral patterns
         behavioral_features = self._analyze_behaviors(interactions, context)
