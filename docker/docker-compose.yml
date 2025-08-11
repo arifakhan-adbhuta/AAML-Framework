@@ -41,7 +41,9 @@ services:
     image: postgres:15-alpine
     environment:
       - POSTGRES_USER=aaml
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secure_default_password}
+
+
       - POSTGRES_DB=aaml
     volumes:
       - postgres_data:/var/lib/postgresql/data
