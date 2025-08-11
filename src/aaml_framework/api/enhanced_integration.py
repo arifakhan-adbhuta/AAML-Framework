@@ -74,9 +74,15 @@ class EnhancedAAMLFramework(AAMLFramework):
         self.threat_actor_detector = ThreatActorDetector(config)
         self.constitutional_enforcer = ConstitutionalAIEnforcer()
         self.multi_layer_defense = MultiLayeredCognitiveDefense()
-        self.data_protector = InteractionDataProtector(
-            config.get('encryption_key', b'default_key_replace_in_production')
-        )
+       encryption_key = config.get('encryption_key')
+  if not encryption_key:
+      raise ValueError("encryption_key must be provided in config - never 
+  use default keys in production")
+  if isinstance(encryption_key, str):
+      encryption_key = encryption_key.encode()
+  self.data_protector = InteractionDataProtector(encryption_key)
+
+
         
         # Federated firewall instances per device
         self.federated_firewalls: Dict[str, FederatedCognitiveFirewall] = {}
