@@ -184,7 +184,6 @@ Building on the core AAML principles, we have also integrated a comprehensive Co
 
 ## Repository Structure
 
-```
 aaml-framework/
 ├── .github/
 │   ├── workflows/
@@ -295,7 +294,7 @@ aaml-framework/
 ├── requirements-dev.txt             # Development dependencies
 ├── setup.py                         # Package installation
 └── SECURITY.md                      # Security policy
-```
+
 
 ## Installation
 
