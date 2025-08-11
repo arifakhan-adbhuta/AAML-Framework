@@ -532,7 +532,7 @@ spec:
       },
       "encryption_required": true
     }
-  },
+  }
 }
 
 ---
