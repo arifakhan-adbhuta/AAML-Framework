@@ -60,9 +60,11 @@ setup(
     entry_points={
         "console_scripts": [
             "aaml-api=aaml_framework.api.enhanced_integration:main",
-            "aaml-auditor=aaml_framework.cognitive_firewall.auditor_service:main",
-            "aaml-federated=aaml_framework.federated.aggregator:main",
-            "aaml-trainer=aaml_framework.training.trainer:main",
+  # TODO: Uncomment when modules are implemented
+  # "aaml-auditor=aaml_framework.cognitive_firewall.auditor_service:main",
+  # "aaml-federated=aaml_framework.federated.aggregator:main",
+  # "aaml-trainer=aaml_framework.training.trainer:main",
+
         ],
     },
     include_package_data=True,
