@@ -12,8 +12,19 @@ from datetime import datetime, timedelta
 import asyncio
 import structlog
 from prometheus_client import Counter, Histogram, Gauge, generate_latest
-import aioredis
-from aiokafka import AIOKafkaProducer, AIOKafkaConsumer
+# Fix deprecated import
+try:
+    import redis.asyncio as aioredis
+except ImportError:
+    import aioredis  # fallback for older versions
+
+# Add error handling for optional dependencies
+try:
+    from aiokafka import AIOKafkaProducer
+except ImportError:
+    logger = logging.getLogger(__name__)
+    logger.warning("Kafka not available - some features will be disabled")
+    AIOKafkaProducer = None
 import json
 import jwt
 from cryptography.hazmat.primitives import hashes
