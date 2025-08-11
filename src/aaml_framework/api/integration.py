@@ -312,7 +312,7 @@ class AAMLFramework:
         # If threat is high, add warnings and potentially block
         if threat_score > 0.7:
             response.success = False
-            response.warnings.append(f"High threat detected: {[t.value for t in threats]}")
+           response.warnings.append(f"High threat detected: {[str(t) for t in threats]}")
             
             # Log security incident
             background_tasks.add_task(
