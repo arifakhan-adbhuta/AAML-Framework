@@ -370,8 +370,12 @@ class AdvancedCapabilityAssessor:
             return 0.5
         
         context_references = 0
-        context_keywords = set(str(v).lower().split() for v in context.values() if isinstance(v, str))
-        context_keywords = {word for sublist in context_keywords for word in sublist}
+        context_keywords = set()
+  for v in context.values():
+      if isinstance(v, str):
+          context_keywords.update(str(v).lower().split())
+
+
         
         for interaction in interactions:
             text = interaction.get('content', '').lower()
