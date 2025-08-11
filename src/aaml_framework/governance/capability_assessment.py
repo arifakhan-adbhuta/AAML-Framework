@@ -456,10 +456,18 @@ class AdvancedCapabilityAssessor:
         quality_factors.append(complete_interactions / len(interactions))
         
         # Recency factor
-        if interactions[-1].get('timestamp'):
-            last_interaction = datetime.fromisoformat(interactions[-1]['timestamp'])
-            hours_ago = (datetime.now() - last_interaction).total_seconds() / 3600
-            quality_factors.append(max(1.0 - hours_ago / 168, 0))  # Week decay
+  if interactions[-1].get('timestamp'):
+      try:
+          last_interaction =
+  datetime.fromisoformat(interactions[-1]['timestamp'])
+          hours_ago = (datetime.now() - last_interaction).total_seconds() /
+   3600
+          quality_factors.append(max(1.0 - hours_ago / 168, 0))  # Week 
+  decay
+      except (ValueError, TypeError) as e:
+          # Invalid timestamp format - skip recency factor
+          logger.warning(f"Invalid timestamp format: 
+  {interactions[-1].get('timestamp')}: {e}")
         
         return np.mean(quality_factors)
     
