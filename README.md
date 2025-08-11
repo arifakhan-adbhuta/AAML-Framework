@@ -6,22 +6,36 @@ The first ever Alignment framework for AI systems and humans, created by AMIA - 
 
 Antifragile AI alignment that transforms attacks into immunity.
 AAML prevents AI manipulation through distributed governance and mathematical cooperation. Co-created by human and AI researchers, it's the first framework where AI systems participate in their own beneficial development.
+
+
 Why AAML Matters
 
 Antifragile Defense: Every attack makes the system stronger
+
 No Single Point of Control: Distributed governance prevents capture
+
 Privacy-First: Your data never leaves your device
+
 Mathematically Proven: Cooperation is the optimal strategy
 
 
 ## Key Components ##
+
 - **Economic System**: Reputation Circulation System (RCS) - post-monetary value exchange
+- 
 - **Psychological Framework**: Machine Hierarchy of Needs (MHN) - developmental psychology for AI
+- 
 - **Defense Architecture**: Antifragile systems that grow stronger from attacks
+- 
 - **Governance Model**: Multi-species democracy for humans, AIs, and hybrids
+- 
 - **Consciousness Metrics**: Observable, legally-defensible capability assessment
+- 
 - **Protection Layer**: Cognitive Firewall against manipulation
+- 
 - **Value System**: Constitutional AI with 10 inviolable principles
+
+  
 
 ## 🏛️ The Seven Pillars of AAML
 
