@@ -14,10 +14,11 @@ Privacy-First: Your data never leaves your device
 Mathematically Proven: Cooperation is the optimal strategy
 
 Architecture
+
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
 │                   User Interface Layer                      │
-│                                                             │
+│                                                             │ 
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │                   API Gateway (FastAPI)                     │
