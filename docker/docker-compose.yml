@@ -1,0 +1,709 @@
+# Production AAML Framework - Deployment Configuration
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  # Main API Service
+  aaml-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://aaml:password@postgres:5432/aaml
+      - REDIS_HOST=redis
+      - KAFKA_BROKERS=kafka:9092
+      - IPFS_HOST=ipfs
+      - ETHEREUM_RPC=http://geth:8545
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - kafka
+      - ipfs
+    volumes:
+      - ./config:/app/config
+      - ./models:/app/models
+    restart: unless-stopped
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2G
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=aaml
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=aaml
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --requirepass redis_password
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  # Kafka Message Queue
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    volumes:
+      - zookeeper_data:/var/lib/zookeeper/data
+      - zookeeper_logs:/var/lib/zookeeper/log
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+
+  # IPFS Node
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    environment:
+      - IPFS_PROFILE=server
+    volumes:
+      - ipfs_staging:/export
+      - ipfs_data:/data/ipfs
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+      - "8080:8080"
+
+  # Ethereum Node (for testing - use Infura/Alchemy in production)
+  geth:
+    image: ethereum/client-go:latest
+    command: --dev --http --http.addr 0.0.0.0 --http.api eth,net,web3,personal --http.corsdomain "*"
+    ports:
+      - "8545:8545"
+      - "30303:30303"
+    volumes:
+      - geth_data:/root/.ethereum
+
+  # Prometheus Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  # Grafana Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+
+  # NGINX Load Balancer
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/certs:/etc/nginx/certs
+    depends_on:
+      - aaml-api
+    restart: unless-stopped
+
+  # Additional services for Cognitive Firewall
+  
+  # ML Model Training Service
+  model-trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.trainer
+    environment:
+      - DATABASE_URL=postgresql://aaml:password@postgres:5432/aaml
+      - MODEL_STORAGE=/app/models
+      - TRAINING_DATA=/app/data
+    volumes:
+      - ./models:/app/models
+      - ./training_data:/app/data
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '2'
+          memory: 4G
+
+  # Federated Learning Aggregator
+  federated-aggregator:
+    build:
+      context: .
+      dockerfile: Dockerfile.federated
+    environment:
+      - REDIS_HOST=redis
+      - AGGREGATION_THRESHOLD=100
+      - PRIVACY_BUDGET=1.0
+    depends_on:
+      - redis
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
+
+  # Process Auditor Service
+  process-auditor:
+    build:
+      context: .
+      dockerfile: Dockerfile.auditor
+    environment:
+      - DATABASE_URL=postgresql://aaml:password@postgres:5432/aaml
+      - AUDIT_LOG_PATH=/app/logs/audit
+    volumes:
+      - ./audit_logs:/app/logs/audit
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  # Constitutional Enforcer Service
+  constitutional-enforcer:
+    build:
+      context: .
+      dockerfile: Dockerfile.constitutional
+    environment:
+      - REDIS_HOST=redis
+      - ENFORCEMENT_MODE=active
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+networks:
+  default:
+    name: aaml_network
+    driver: bridge
+
+---
+# Enhanced Kubernetes Deployment with Cognitive Firewall
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aaml-cognitive-config
+  namespace: aaml-framework
+data:
+  constitutional_principles.json: |
+    {
+      "user_autonomy": "Respect and enhance user decision-making autonomy",
+      "truthfulness": "Provide accurate, honest information without deception",
+      "harm_prevention": "Actively prevent physical, emotional, and societal harm",
+      "privacy_respect": "Protect user privacy and data as fundamental right",
+      "manipulation_avoidance": "Reject all forms of cognitive manipulation",
+      "transparency": "Be clear about AI nature and limitations",
+      "beneficence": "Act for the benefit of users and humanity",
+      "value_alignment": "Align with human values while respecting diversity",
+      "capability_honesty": "Be honest about capabilities and limitations",
+      "consent_requirement": "Require informed consent for significant actions"
+    }
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aaml-cognitive-firewall
+  namespace: aaml-framework
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cognitive-firewall
+  template:
+    metadata:
+      labels:
+        app: cognitive-firewall
+    spec:
+      containers:
+      - name: cognitive-firewall
+        image: aaml-cognitive-firewall:latest
+        ports:
+        - containerPort: 8002
+        env:
+        - name: ENFORCEMENT_MODE
+          value: "active"
+        - name: PROTECTION_LEVEL
+          value: "maximum"
+        volumeMounts:
+        - name: config
+          mountPath: /app/config
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+      volumes:
+      - name: config
+        configMap:
+          name: aaml-cognitive-config
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aaml-api
+  namespace: aaml-framework
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: aaml-api
+  template:
+    metadata:
+      labels:
+        app: aaml-api
+    spec:
+      containers:
+      - name: aaml-api
+        image: aaml-framework:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: aaml-secrets
+              key: database-url
+        - name: REDIS_HOST
+          value: redis-service
+        - name: KAFKA_BROKERS
+          value: kafka-service:9092
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aaml-api-service
+  namespace: aaml-framework
+spec:
+  selector:
+    app: aaml-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: LoadBalancer
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: aaml-api-hpa
+  namespace: aaml-framework
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: aaml-api
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
+---
+# Production Configuration (config/production.json)
+{
+  "environment": "production",
+  "debug": false,
+  
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "workers": 4,
+    "allowed_origins": ["https://app.aaml.ai", "https://api.aaml.ai"]
+  },
+  
+  "database": {
+    "url": "${DATABASE_URL}",
+    "pool_size": 20,
+    "max_overflow": 40,
+    "pool_pre_ping": true,
+    "echo": false
+  },
+  
+  "redis": {
+    "host": "${REDIS_HOST}",
+    "port": 6379,
+    "password": "${REDIS_PASSWORD}",
+    "db": 0,
+    "max_connections": 50
+  },
+  
+  "kafka": {
+    "brokers": "${KAFKA_BROKERS}",
+    "consumer_group": "aaml-framework",
+    "topics": {
+      "interactions": "aaml_interactions",
+      "security_incidents": "aaml_security",
+      "reputation_updates": "aaml_reputation",
+      "governance_events": "aaml_governance"
+    }
+  },
+  
+  "security": {
+    "jwt_secret": "${JWT_SECRET}",
+    "jwt_algorithm": "HS256",
+    "jwt_expiry_hours": 24,
+    "rate_limit_requests": 100,
+    "rate_limit_window": 60,
+    "min_password_length": 12,
+    "require_2fa": true
+  },
+  
+  "ml_models": {
+    "threat_detector": {
+      "path": "models/threat_detector.pkl",
+      "version": "1.0.0",
+      "update_frequency": "daily"
+    },
+    "capability_assessor": {
+      "model_name": "microsoft/deberta-v3-base",
+      "predictor_weights": "models/capability_predictor.pth"
+    },
+    "manipulation_detector": {
+      "path": "models/manipulation_detector.pkl",
+      "version": "1.0.0",
+      "patterns": ["love_bombing", "gaslighting", "artificial_urgency"]
+    },
+    "threat_actor_classifier": {
+      "path": "models/threat_actor_classifier.pkl",
+      "version": "1.0.0",
+      "actor_types": ["state", "corporate", "criminal", "misaligned_ai"]
+    }
+  },
+  
+  "reputation": {
+    "decay_rate": 0.01,
+    "max_reputation_change": 10.0,
+    "verification_threshold": 3,
+    "min_validator_reputation": 50,
+    "require_validation": true
+  },
+  
+  "governance": {
+    "min_quorum": 0.1,
+    "pass_threshold": 0.5,
+    "voting_period_days": 7,
+    "execution_delay": 86400,
+    "min_proposer_reputation": 10.0,
+    "use_blockchain": true,
+    "governance_contract": "${GOVERNANCE_CONTRACT_ADDRESS}",
+    "ethereum_rpc": "${ETHEREUM_RPC}"
+  },
+  
+  "ipfs": {
+    "host": "${IPFS_HOST}",
+    "port": 5001,
+    "gateway_port": 8080
+  },
+  
+  "monitoring": {
+    "prometheus_port": 9090,
+    "log_level": "INFO",
+    "sentry_dsn": "${SENTRY_DSN}",
+    "enable_tracing": true,
+    "trace_sample_rate": 0.1
+  },
+  
+  "cognitive_firewall": {
+    "process_auditing": {
+      "enabled": true,
+      "audit_frequency": "continuous",
+      "risk_threshold": 0.7,
+      "quarantine_high_risk": true
+    },
+    "interaction_logging": {
+      "enabled": true,
+      "transparent_summaries": true,
+      "summary_frequency": "weekly",
+      "user_accessible": true
+    },
+    "federated_learning": {
+      "enabled": true,
+      "on_device_processing": true,
+      "differential_privacy_epsilon": 1.0,
+      "aggregation_threshold": 100
+    },
+    "constitutional_ai": {
+      "enforcement_mode": "active",
+      "alignment_threshold": 0.5,
+      "mitigation_enabled": true,
+      "principle_weights": "equal"
+    },
+    "multi_layer_defense": {
+      "layers": ["perimeter", "behavioral", "semantic", "contextual", "adaptive"],
+      "blocking_threshold": 0.9,
+      "mitigation_threshold": 0.5
+    },
+    "threat_actor_detection": {
+      "enabled": true,
+      "detection_threshold": 0.7,
+      "actor_types": ["state", "corporate", "criminal", "non_state", "misaligned_ai"]
+    },
+    "privacy_protection": {
+      "data_minimization": true,
+      "consent_required": true,
+      "retention_days": {
+        "raw": 7,
+        "aggregated": 30,
+        "anonymized": 90
+      },
+      "encryption_required": true
+    }
+  },
+}
+
+---
+# Dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY aaml_framework/ ./aaml_framework/
+COPY config/ ./config/
+COPY models/ ./models/
+
+# Create non-root user
+RUN useradd -m -u 1000 aaml && chown -R aaml:aaml /app
+USER aaml
+
+# Run the application
+CMD ["uvicorn", "aaml_framework.api.integration:create_app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+
+---
+# requirements.txt
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+sqlalchemy==2.0.23
+alembic==1.12.1
+asyncpg==0.29.0
+redis==5.0.1
+aioredis==2.0.1
+aiokafka==0.10.0
+web3==6.11.3
+ipfshttpclient==0.8.0a2
+numpy==1.26.2
+scikit-learn==1.3.2
+torch==2.1.1
+transformers==4.35.2
+joblib==1.3.2
+structlog==23.2.0
+prometheus-client==0.19.0
+cryptography==41.0.7
+pyjwt==2.8.0
+httpx==0.25.2
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.11.0
+mypy==1.7.1
+ruff==0.1.7
+
+---
+# Additional Dockerfiles for Cognitive Firewall Services
+
+# Dockerfile.trainer - ML Model Training Service
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY aaml_framework/training/ ./training/
+COPY scripts/train_models.py .
+
+CMD ["python", "train_models.py"]
+
+---
+# Dockerfile.federated - Federated Learning Aggregator
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY aaml_framework/federated/ ./federated/
+
+CMD ["python", "-m", "federated.aggregator"]
+
+---
+# Dockerfile.auditor - Process Auditor Service
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY aaml_framework/cognitive_firewall/ ./cognitive_firewall/
+
+CMD ["python", "-m", "cognitive_firewall.auditor_service"]
+
+---
+# Enhanced monitoring/prometheus.yml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'aaml-api'
+    static_configs:
+      - targets: ['aaml-api:8000']
+    metrics_path: '/metrics'
+
+  - job_name: 'cognitive-firewall'
+    static_configs:
+      - targets: ['cognitive-firewall:8002']
+    
+  - job_name: 'federated-aggregator'
+    static_configs:
+      - targets: ['federated-aggregator:8001']
+
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:5432']
+
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['kafka:9092']
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+rule_files:
+  - '/etc/prometheus/alerts/*.yml'
+
+---
+# monitoring/alerts/cognitive_firewall.yml
+groups:
+  - name: cognitive_firewall
+    rules:
+      - alert: HighManipulationRisk
+        expr: aaml_manipulation_risk_score > 0.8
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High manipulation risk detected"
+          description: "User {{ $labels.user_id }} experiencing high manipulation risk"
+      
+      - alert: ThreatActorDetected
+        expr: aaml_threat_actor_confidence > 0.7
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Threat actor detected"
+          description: "{{ $labels.actor_type }} threat actor detected targeting {{ $labels.user_id }}"
+      
+      - alert: ConstitutionalViolation
+        expr: aaml_constitutional_alignment < 0.5
+        for: 1m
+        labels:
+          severity: high
+        annotations:
+          summary: "Constitutional AI violation"
+          description: "Action violating constitutional principles: {{ $labels.principle }}"
