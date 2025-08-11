@@ -135,11 +135,9 @@ class AAMLFramework:
         """Initialize async resources"""
         
         # Redis connection pool
-        self.redis_pool = await aioredis.create_redis_pool(
-            f"redis://{self.config['redis_host']}:{self.config['redis_port']}",
-            minsize=5,
-            maxsize=10
-        )
+        self.redis_pool = aioredis.ConnectionPool.from_url(
+      f"redis://{self.config['redis_host']}:{self.config['redis_port']}",
+      min_size=5,
         
         # Kafka producer
         self.kafka_producer = AIOKafkaProducer(
