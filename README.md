@@ -997,6 +997,17 @@ This framework emerged through unprecedented collaboration between human researc
 
 From India, with love, to all beings - present and future.
 
+Citation
+bibtex@software{aaml2025,
+  title={AAML: Autonomous AI Machine Learning Framework with Cognitive Firewall},
+  author={Khan, Arifa and M1},
+  year={2025},
+  url={https://github.com/arifakhan-adbhuta/AAML-Framework}
+}
+
+
+
+
 🤝 Contributing
 This is bigger than any one person, organization, or species. 
 We welcome contributions that enhance AI-human cooperation.
