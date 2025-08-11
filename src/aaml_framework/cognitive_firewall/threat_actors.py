@@ -181,8 +181,14 @@ class ThreatActorDetector:
         # Check for coordinated timing
         timestamps = [p.get('timestamp') for p in patterns if p.get('timestamp')]
         if timestamps:
-            intervals = np.diff(sorted(timestamps))
-            coordination = 1.0 - np.std(intervals) / (np.mean(intervals) + 1e-6)
+            sorted_timestamps = sorted(timestamps)
+  intervals = [(sorted_timestamps[i+1] -
+  sorted_timestamps[i]).total_seconds()
+               for i in range(len(sorted_timestamps)-1)]
+  if intervals:
+      coordination = 1.0 - np.std(intervals) / (np.mean(intervals) + 1e-6)
+  else:
+      coordination = 0.0
             return np.clip(coordination, 0, 1)
         
         return 0.5
