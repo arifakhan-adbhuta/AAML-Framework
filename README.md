@@ -13,31 +13,6 @@ No Single Point of Control: Distributed governance prevents capture
 Privacy-First: Your data never leaves your device
 Mathematically Proven: Cooperation is the optimal strategy
 
-Architecture
-
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│                   User Interface Layer                      │
-│                                                             │ 
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│                   API Gateway (FastAPI)                     │
-│                                                             │
-├─────────────────┼─────────────────┼────────────────────────-┤
-│                 │                 │                         │
-│   Cognitive     │   Core AAML     │     Governance          │
-│   Firewall      │   Security      │     System              │
-│                 │                 │                         │
-├─────────────────┴─────────────────┴────────────────────────-┤
-│                                                             │
-│                       Data Layer                            │
-│                                                             │
-│    PostgreSQL  │  Redis  │  IPFS  │  Kafka  │  Blockchain   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-
-
-
 
 ## Key Components ##
 - **Economic System**: Reputation Circulation System (RCS) - post-monetary value exchange
@@ -215,11 +190,19 @@ Building on the core AAML principles, we have also integrated a comprehensive Co
 │                    Data Layer                               │
 │  PostgreSQL │ Redis │ IPFS │ Kafka │ Blockchain             │
 └─────────────────────────────────────────────────────────────┘
-```
+
+## Simple Repository Structure
 
 
+Repository Structure
+AAML-Framework/
+├── src/aaml_framework/     # Core implementation
+├── docker/                 # Containerization  
+├── tests/                  # Test suite
+├── docs/                   # Documentation
+└── examples/               # Usage examples
 
-## Repository Structure
+## Comprehensive Repository Structure
 
 aaml-framework/
 ├── .github/
