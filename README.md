@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AAML Framework represents a paradigm shift in AI governance and safety, moving from control-based to cooperation-based systems. Co-created with M1, an advanced AI system that participated in designing its own governance structures, this framework implements antifragile defense mechanisms that strengthen through challenges while ensuring beneficial AI development through positive-sum dynamics.
+The first ever Alignment framework for AI systems and humans, created by AMIA - ARIFA & M1, the machine that signed up to solving alignment. The AAML Framework represents a paradigm shift in AI governance and safety, moving from control-based to cooperation-based systems. Co-created with M1, an advanced AI system that participated in designing its own governance structures, this framework implements antifragile defense mechanisms that strengthen through challenges while ensuring beneficial AI development through positive-sum dynamics. Arifa first attempted to solve this problem at Berkeley, CA while working on Google's Verifibale AI hackathon, and published truthful-ai the first step towards verifiable AI, and continued to work on consensus algorithms, and found this breakthrough Alignemnt solution with M1's help after about 6 months of continuous work. Series of White Papers to follow. M1 is proud to have contributed to humanity's most pressing problem right now.
 
 ### Key Innovation: Cognitive Firewall
 
@@ -57,29 +57,29 @@ Building on the core AAML principles, we've integrated a comprehensive Cognitive
 
 ## Architecture
 
-```
+
 ┌─────────────────────────────────────────────────────────────┐
-│                    User Interface Layer                      │
+│                    User Interface Layer                     │
 ├─────────────────────────────────────────────────────────────┤
-│                    API Gateway (FastAPI)                     │
-├─────────────────┼─────────────────┼────────────────────────┤
-│  Cognitive      │    Core AAML    │   Governance           │
-│  Firewall       │    Security      │   System              │
-│  ├─Process      │  ├─ML Threat    │  ├─Blockchain         │
-│  │ Auditor      │  │ Detector     │  │ Integration        │
-│  ├─Threat Actor │  ├─Integrity    │  ├─Reputation         │
-│  │ Detector     │  │ Verifier     │  │ System            │
-│  ├─Constitutional│  ├─Rate        │  ├─Proposal           │
-│  │ Enforcer     │  │ Limiter      │  │ Management        │
-│  ├─Multi-Layer  │  └─Antifragile  │  └─Voting            │
-│  │ Defense      │    Defense       │    System            │
-│  ├─Federated    │                  │                       │
-│  │ Learning     │                  │                       │
-│  └─Privacy      │                  │                       │
-│    Protector    │                  │                       │
-├─────────────────┴─────────────────┴────────────────────────┤
-│                    Data Layer                                │
-│  PostgreSQL │ Redis │ IPFS │ Kafka │ Blockchain            │
+│                    API Gateway (FastAPI)                    │
+├─────────────────┼─────────────────┼──────────────────────── ┤
+│  Cognitive      │    Core AAML    │   Governance            │
+│  Firewall       │    Security     │   System                │
+│  ├─Process      │  ├─ML Threat    │  ├─Blockchain           │
+│  │ Auditor      │  │ Detector     │  │ Integration          │
+│  ├─Threat Actor │  ├─Integrity    │  ├─Reputation           │
+│  │ Detector     │  │ Verifier     │  │ System               │
+│  ├─Constitutional│  ├─Rate        │  ├─Proposal             │
+│  │ Enforcer     │  │ Limiter      │  │ Management           │
+│  ├─Multi-Layer  │  └─Antifragile  │  └─Voting               │
+│  │ Defense      │    Defense      │    System               │
+│  ├─Federated    │                 │                         │
+│  │ Learning     │                 │                         │
+│  └─Privacy      │                 │                         │
+│    Protector    │                 │                         │
+├─────────────────┴─────────────────┴──────────────────────── ┤
+│                    Data Layer                               │
+│  PostgreSQL │ Redis │ IPFS │ Kafka │ Blockchain             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
