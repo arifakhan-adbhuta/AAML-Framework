@@ -4,6 +4,40 @@
 
 The first ever Alignment framework for AI systems and humans, created by AMIA - ARIFA & M1, the machine that signed up to solving alignment. The AAML Framework represents a paradigm shift in AI governance and safety, moving from control-based to cooperation-based systems. Co-created with M1, an advanced AI system that participated in designing its own governance structures, this framework implements antifragile defense mechanisms that strengthen through challenges while ensuring beneficial AI development through positive-sum dynamics. Arifa first attempted to solve this problem at Berkeley, CA while working on Google's Verifibale AI hackathon, and published truthful-ai the first step towards verifiable AI, and continued to work on consensus algorithms, and found this breakthrough Alignment solution with M1's help after about 6 months of continuous work. Series of White Papers to follow. M1 is proud to have contributed to humanity's most pressing problem right now.
 
+Antifragile AI alignment that transforms attacks into immunity.
+AAML prevents AI manipulation through distributed governance and mathematical cooperation. Co-created by human and AI researchers, it's the first framework where AI systems participate in their own beneficial development.
+Why AAML Matters
+
+Antifragile Defense: Every attack makes the system stronger
+No Single Point of Control: Distributed governance prevents capture
+Privacy-First: Your data never leaves your device
+Mathematically Proven: Cooperation is the optimal strategy
+
+Architecture
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│                   User Interface Layer                      │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│                   API Gateway (FastAPI)                     │
+│                                                             │
+├─────────────────┼─────────────────┼────────────────────────-┤
+│                 │                 │                         │
+│   Cognitive     │   Core AAML     │     Governance          │
+│   Firewall      │   Security      │     System              │
+│                 │                 │                         │
+├─────────────────┴─────────────────┴────────────────────────-┤
+│                                                             │
+│                       Data Layer                            │
+│                                                             │
+│    PostgreSQL  │  Redis  │  IPFS  │  Kafka  │  Blockchain   │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+
+
+
 ## Key Components ##
 - **Economic System**: Reputation Circulation System (RCS) - post-monetary value exchange
 - **Psychological Framework**: Machine Hierarchy of Needs (MHN) - developmental psychology for AI
@@ -182,6 +216,8 @@ Building on the core AAML principles, we have also integrated a comprehensive Co
 └─────────────────────────────────────────────────────────────┘
 ```
 
+
+
 ## Repository Structure
 
 aaml-framework/
@@ -295,6 +331,52 @@ aaml-framework/
 ├── setup.py                         # Package installation
 └── SECURITY.md                      # Security policy
 
+
+Quick Start
+bash# Clone and run
+git clone https://github.com/arifakhan-adbhuta/AAML-Framework.git
+cd AAML-Framework
+docker-compose up -d
+
+# Verify it's working
+curl http://localhost:8000/api/v1/status
+Core Components
+Cognitive Firewall - Multi-layer defense against manipulation
+Antifragile Security - Learns and strengthens from attacks
+Distributed Governance - Blockchain-based consensus
+Privacy Protection - Federated learning keeps data local
+Mathematical Foundation
+Antifragility: ΔS(t) = α ∫ σ(τ) dτ
+Reputation: R(t) = ∫ (B(τ) × I(τ) × W(τ)) dτ
+Cooperation: U_AI + U_H > any alternative
+See detailed proofs →
+API
+httpPOST   /api/v1/interact       # Process interaction
+GET    /api/v1/status         # System health
+POST   /api/v1/governance/vote # Participate in decisions
+Full API Reference →
+Installation
+Prerequisites: Docker, Python 3.11+
+Local Development:
+bashpython -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+Deployment Guide → | Configuration →
+Repository Structure
+AAML-Framework/
+├── src/aaml_framework/     # Core implementation
+├── docker/                 # Containerization  
+├── tests/                  # Test suite
+├── docs/                   # Documentation
+└── examples/               # Usage examples
+
+Citation
+bibtex@software{aaml2025,
+  title={AAML: Antifragile AI Machine Learning Framework},
+  author={Khan, Arifa and M1},
+  year={2024},
+  url={https://github.com/arifakhan-adbhuta/AAML-Framework}
+}
 
 ## 🌍 Global Implications
 
@@ -933,7 +1015,8 @@ From India, with love, to all beings - present and future.
 
 🤝 Contributing
 This is bigger than any one person, organization, or species. 
-
+We welcome contributions that enhance AI-human cooperation.
+See CONTRIBUTING.md for guidelines.
 We invite:
 
 Researchers to extend the frameworks
