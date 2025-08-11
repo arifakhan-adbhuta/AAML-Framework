@@ -576,10 +576,22 @@ class MaliciousRLHFDetector:
             'min': min(magnitudes)
         }
     
-    def _is_correlated(self, pattern: Dict[str, Any], indicator: Dict[str, Any]) -> bool:
-        """Check if pattern and indicator are correlated"""
-        # Simplified - in production use actual correlation analysis
-        return np.random.random() > 0.5
+    def _is_correlated(self, pattern: Dict[str, Any], indicator: Dict[str, 
+  Any]) -> bool:
+      """Check if pattern and indicator are correlated"""
+      # Use deterministic correlation based on actual data
+      pattern_features = pattern.get('common_features', {})
+      indicator_type = indicator.get('type', '')
+
+      # Simple deterministic correlation heuristic
+      if 'engagement' in indicator_type and
+  pattern_features.get('average_magnitude', 0) > 0.5:
+          return True
+      if 'emotional' in indicator_type and
+  pattern_features.get('average_magnitude', 0) > 0.7:
+          return True
+      return False
+
     
     def _extract_signal_features(self, signals: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Extract features from signal set"""
