@@ -138,7 +138,9 @@ class AAMLFramework:
         self.redis_pool = aioredis.ConnectionPool.from_url(
       f"redis://{self.config['redis_host']}:{self.config['redis_port']}",
       min_size=5,
-        
+        max_size=10
+  )
+  self.redis = aioredis.Redis(connection_pool=self.redis_pool)
         # Kafka producer
         self.kafka_producer = AIOKafkaProducer(
             bootstrap_servers=self.config.get('kafka_brokers', 'localhost:9092'),
