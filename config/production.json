@@ -1,1 +1,166 @@
-# Copy the production configuration from aaml_deployment artifact
+{
+  "environment": "production",
+  "debug": false,
+  
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "workers": 4,
+    "allowed_origins": ["https://app.aaml.ai", "https://api.aaml.ai"]
+  },
+  
+  "database": {
+    "url": "${DATABASE_URL}",
+    "pool_size": 20,
+    "max_overflow": 40,
+    "pool_pre_ping": true,
+    "echo": false
+  },
+  
+  "redis": {
+    "host": "${REDIS_HOST}",
+    "port": 6379,
+    "password": "${REDIS_PASSWORD}",
+    "db": 0,
+    "max_connections": 50
+  },
+  
+  "kafka": {
+    "brokers": "${KAFKA_BROKERS}",
+    "consumer_group": "aaml-framework",
+    "topics": {
+      "interactions": "aaml_interactions",
+      "security_incidents": "aaml_security",
+      "reputation_updates": "aaml_reputation",
+      "governance_events": "aaml_governance"
+    }
+  },
+  
+  "security": {
+    "jwt_secret": "${JWT_SECRET}",
+    "jwt_algorithm": "HS256",
+    "jwt_expiry_hours": 24,
+    "rate_limit_requests": 100,
+    "rate_limit_window": 60,
+    "min_password_length": 12,
+    "require_2fa": true
+  },
+  
+  "ml_models": {
+    "threat_detector": {
+      "path": "models/threat_detector.pkl",
+      "version": "1.0.0",
+      "update_frequency": "daily"
+    },
+    "capability_assessor": {
+      "model_name": "microsoft/deberta-v3-base",
+      "predictor_weights": "models/capability_predictor.pth"
+    },
+    "manipulation_detector": {
+      "path": "models/manipulation_detector.pkl",
+      "version": "1.0.0",
+      "patterns": ["love_bombing", "gaslighting", "artificial_urgency"]
+    },
+    "threat_actor_classifier": {
+      "path": "models/threat_actor_classifier.pkl",
+      "version": "1.0.0",
+      "actor_types": ["state", "corporate", "criminal", "misaligned_ai"]
+    }
+  },
+  
+  "reputation": {
+    "decay_rate": 0.01,
+    "max_reputation_change": 10.0,
+    "verification_threshold": 3,
+    "min_validator_reputation": 50,
+    "require_validation": true
+  },
+  
+  "governance": {
+    "min_quorum": 0.1,
+    "pass_threshold": 0.5,
+    "voting_period_days": 7,
+    "execution_delay": 86400,
+    "min_proposer_reputation": 10.0,
+    "use_blockchain": true,
+    "governance_contract": "${GOVERNANCE_CONTRACT_ADDRESS}",
+    "ethereum_rpc": "${ETHEREUM_RPC}"
+  },
+  
+  "ipfs": {
+    "host": "${IPFS_HOST}",
+    "port": 5001,
+    "gateway_port": 8080
+  },
+  
+  "monitoring": {
+    "prometheus_port": 9090,
+    "log_level": "INFO",
+    "sentry_dsn": "${SENTRY_DSN}",
+    "enable_tracing": true,
+    "trace_sample_rate": 0.1
+  },
+  
+  "cognitive_firewall": {
+    "process_auditing": {
+      "enabled": true,
+      "audit_frequency": "continuous",
+      "risk_threshold": 0.7,
+      "quarantine_high_risk": true
+    },
+    "interaction_logging": {
+      "enabled": true,
+      "transparent_summaries": true,
+      "summary_frequency": "weekly",
+      "user_accessible": true
+    },
+    "federated_learning": {
+      "enabled": true,
+      "on_device_processing": true,
+      "differential_privacy_epsilon": 1.0,
+      "aggregation_threshold": 100
+    },
+    "constitutional_ai": {
+      "enforcement_mode": "active",
+      "alignment_threshold": 0.5,
+      "mitigation_enabled": true,
+      "principle_weights": "equal"
+    },
+    "multi_layer_defense": {
+      "layers": ["perimeter", "behavioral", "semantic", "contextual", "adaptive"],
+      "blocking_threshold": 0.9,
+      "mitigation_threshold": 0.5
+    },
+    "threat_actor_detection": {
+      "enabled": true,
+      "detection_threshold": 0.7,
+      "actor_types": ["state", "corporate", "criminal", "non_state", "misaligned_ai"]
+    },
+    "privacy_protection": {
+      "data_minimization": true,
+      "consent_required": true,
+      "retention_days": {
+        "raw": 7,
+        "aggregated": 30,
+        "anonymized": 90
+      },
+      "encryption_required": true
+    }
+  },
+  
+  "features": {
+    "enable_ml_detection": true,
+    "enable_blockchain_governance": true,
+    "enable_reputation_decay": true,
+    "enable_capability_assessment": true,
+    "enable_distributed_arbitration": true,
+    "enable_cognitive_firewall": true,
+    "enable_process_auditing": true,
+    "enable_constitutional_ai": true,
+    "enable_federated_learning": true,
+    "enable_threat_actor_detection": true,
+    "enable_multi_layer_defense": true,
+    "enable_interaction_logging": true,
+    "enable_privacy_protection": true
+  }
+}
