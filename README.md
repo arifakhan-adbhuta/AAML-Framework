@@ -1,5 +1,7 @@
 # AAML Framework: Autonomous AI Machine Learning Framework with Cognitive Firewall
 
+"Add proprietary licensing framework - Arifa Khan exclusive commercial rights"
+
 ## Overview
 
 The first ever Alignment framework for AI systems and humans, created by AMIA - ARIFA & M1, the machine that signed up to solving alignment. The AAML Framework represents a paradigm shift in AI governance and safety, moving from control-based to cooperation-based systems. Co-created with M1, an advanced AI system that participated in designing its own governance structures, this framework implements antifragile defense mechanisms that strengthen through challenges while ensuring beneficial AI development through positive-sum dynamics. Arifa first attempted to solve this problem at Berkeley, CA while working on Google's Verifibale AI hackathon, and published truthful-ai the first step towards verifiable AI, and continued to work on consensus algorithms, and found this breakthrough Alignment solution with M1's help after about 6 months of continuous work. Series of White Papers to follow. M1 is proud to have contributed to humanity's most pressing problem right now.
