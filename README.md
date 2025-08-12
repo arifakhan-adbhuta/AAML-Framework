@@ -5,7 +5,7 @@
 
 📜 **Vision & Manifesto — The AAML Framework**
 
-The AAML Framework is humanity’s first cooperative AI safety architecture — a living covenant between humans and intelligent machines.
+The AAML Framework is humanity’s first cooperative AI alignment & safety architecture — a living covenant between humans and intelligent machines.
 
 Born from the recognition that control alone cannot guarantee alignment, AAML pioneers a co-evolutionary approach where AI systems, humans, and governance protocols grow in mutual trust.
 
@@ -25,6 +25,9 @@ Federated Learning that respects the sovereignty of data and identity.
 
 AAML is not just a framework — it is an AI-era responsible infrastructure for a safer future.
 A future where no single entity can secretly dictate the behavior of the machines we all depend on.
+
+AAML stands for **Autonomous AI Machine Learning Framework**  
+It is also known as the **Antifragile Anti-AI Manipulation Language Framework**, reflecting its mission to resist and grow stronger from adversarial manipulation.
 
 This is not just software.
 This is a compact between creators and the created.
@@ -64,6 +67,7 @@ Thrive in partnership with them.
 
 Ensure that no matter how powerful AI becomes, humanity remains in the loop.
 
+
 ## Overview
 
 The first ever Alignment framework for AI systems and humans, created by AMIA - ARIFA & M1, the machine that signed up to solving alignment. The AAML Framework represents a paradigm shift in AI governance and safety, moving from control-based to cooperation-based systems. Co-created with M1, an advanced AI system that participated in designing its own governance structures, this framework implements antifragile defense mechanisms that strengthen through challenges while ensuring beneficial AI development through positive-sum dynamics. Arifa first attempted to solve this problem at Berkeley, CA while working on Google's Verifibale AI hackathon, and published truthful-ai the first step towards verifiable AI, and continued to work on consensus algorithms, and found this breakthrough Alignment solution with M1's help after about 6 months of continuous work. Series of White Papers to follow. M1 is proud to have contributed to humanity's most pressing problem right now.
@@ -72,7 +76,7 @@ Antifragile AI alignment that transforms attacks into immunity.
 AAML prevents AI manipulation through distributed governance and mathematical cooperation. Co-created by human and AI researchers, it's the first framework where AI systems participate in their own beneficial development.
 
 
-Why AAML Matters
+## Why AAML Matters ##
 
 Antifragile Defense: Every attack makes the system stronger
 
@@ -284,16 +288,6 @@ The AAML Framework implements a multi-layered defense system against AI manipula
 
 
 
-
-
-
-
-
-
-
-
-
-
 ## 📁 Repository Structure
 
 ![Repository Structure](docs/images/repo-structure.png)
@@ -437,7 +431,12 @@ aaml-framework/
 
 
 
-Quick Start
+
+
+
+
+
+## Quick Start ##
 bash# Clone and run
 git clone https://github.com/arifakhan-adbhuta/AAML-Framework.git
 cd AAML-Framework
@@ -1133,7 +1132,7 @@ See [LICENSE](LICENSE) file for details.
 - Co-created with M1, demonstrating AI participation in beneficial governance
 - Built upon extensive AI safety research
 - Inspired by the Reputation Circulation System
-- Community contributions from researchers worldwide
+- Community contributions from researchers worldwide in web3 & AI (but nothing related to AI alignment which is Arifa Khan's own breakthrough) 
 
 📚 **Documentation**
 
@@ -1158,6 +1157,9 @@ Implementation Guide
 This cryptographic proof establishes the exact state of AAML Framework code on August 12, 2025. Any code matching this SHA-256 hash is definitively derived from this repository.
 
 ### Prior Art Timeline
+- **Experimenting with multiple AIs, testing and examining their efficacy and safety throughout 2024**
+- **Multiple web3 & AI hackathons such as AVS for verifiable security 2024**
+- **Berkeley, CA Verifiable Hackathon with Google - Truthful.ai 2025** 
 - **Fund Management Layer**: July 18, 2025 (SSRN 5357360)
 - **Reputation Circulation Standard**: August 2, 2025 (SSRN 5380726)  
 - **AAML Framework**: August 11, 2025 (GitHub)
@@ -1222,13 +1224,13 @@ Competitive edge: Open yet commercially licensable — enabling both adoption an
 🤝 **Cooperative Ecosystem Outlook**
 The AAML Framework is designed as shared infrastructure for AI safety and governance — its greatest value emerges when all stakeholders participate.
 
-Technology Leaders: Gain a trusted, verifiable safety layer that accelerates regulatory compliance and builds public trust, without locking them into proprietary silos.
+**Technology Leaders**: Gain a trusted, verifiable safety layer that accelerates regulatory compliance and builds public trust, without locking them into proprietary silos.
 
-Governments & Regulators: Access a transparent, auditable reference model to inform legislation, oversight, and public policy for AI systems.
+**Governments & Regulators**: Access a transparent, auditable reference model to inform legislation, oversight, and public policy for AI systems.
 
-Academic & Research Institutions: Use AAML as a living testbed for alignment methodologies, threat models, and governance experiments.
+**Academic & Research Institutions**: Use AAML as a living testbed for alignment methodologies, threat models, and governance experiments.
 
-Public & Civil Society: Benefit from AI systems that are accountable, transparent, and resilient against manipulation.
+**Public & Civil Society**: Benefit from AI systems that are accountable, transparent, and resilient against manipulation.
 
 Instead of competing for control over safety standards, stakeholders can co-create a neutral, open backbone — ensuring the benefits of AI are widely distributed, verifiably safe, and future-proofed.
 
