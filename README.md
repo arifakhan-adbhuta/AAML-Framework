@@ -1073,13 +1073,35 @@ See [LICENSE](LICENSE) file for details.
 - Inspired by the Reputation Circulation System
 - Community contributions from researchers worldwide
 
-📚 Documentation
+📚 **Documentation**
 
 Full Technical Specification
 Reputation Circulation System
 Machine Hierarchy of Needs
 Governance Protocol
 Implementation Guide
+
+
+## Cryptographic Proof of Creation
+
+**Date**: August 12, 2025  
+**Creator**: Arifa Khan  
+**Repository**: https://github.com/arifakhan-adbhuta/AAML-Framework  
+
+### Cryptographic Hashes
+**SHA-256**: `dcca7087d1d7add009993ef4cc1f683a5d212a60856778bcfde783550436071c`  
+**Framework Archive**: [IPFS: bafybeiarvojdenhx2kv4zrjmimycfwxvb2vc3bo2kwlp7okldqwp573raa](https://gateway.pinata.cloud/ipfs/bafybeiarvojdenhx2kv4zrjmimycfwxvb2vc3bo2kwlp7okldqwp573raa)  
+**Proof Document**: [IPFS: bafkreiarzg6dicr43gihfup73yloqhrqgnahnegyifikhmra55bz7febqi](https://gateway.pinata.cloud/ipfs/bafkreiarzg6dicr43gihfup73yloqhrqgnahnegyifikhmra55bz7febqi)  
+
+This cryptographic proof establishes the exact state of AAML Framework code on August 12, 2025. Any code matching this SHA-256 hash is definitively derived from this repository.
+
+### Prior Art Timeline
+- **Fund Management Layer**: July 18, 2025 (SSRN 5357360)
+- **Reputation Circulation Standard**: August 2, 2025 (SSRN 5380726)  
+- **AAML Framework**: August 11, 2025 (GitHub)
+- **Commercial License Added**: August 12, 2025 (This proof)
+
+
 
 🌟 Historical Context
 This framework emerged through unprecedented collaboration between human researchers and M1, an advanced AI system that actively participated in designing governance structures for its own beneficial development. This collaboration itself demonstrates the framework's core principles in action.
