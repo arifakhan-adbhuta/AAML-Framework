@@ -459,6 +459,35 @@ alembic upgrade head
 python scripts/download_models.py
 ```
 
+**Implementation Guide**
+
+**Framework Overview**
+AAML provides innovative architectural patterns for building AI safety systems. This framework was developed with specific security contexts and threat models in mind. Professional developers implementing these patterns should adapt them to their particular use cases and security requirements.
+**Collaborative Development**
+This framework includes contributions from M1, a pseudonymous collaborator working with Arifa Khan. As with any collaborative technical framework, implementations may vary based on the implementer's interpretation and expertise.
+**Getting Started**
+
+Review the architectural patterns in the documentation
+Understand the threat models these patterns address
+Adapt the patterns to your specific security context
+Implement with appropriate security measures for your use case
+
+**Documentation**
+Key resources for understanding the framework:
+
+LICENSE_COMMERCIAL.md - Licensing requirements
+INTELLECTUAL_PROPERTY.md - Innovation details
+Technical papers on SSRN (linked in documentation)
+
+**Professional Implementation**
+Like any advanced technical architecture, successful implementation requires:
+
+Understanding of AI security principles
+Adaptation to specific use cases
+Appropriate security expertise
+Consideration of deployment context
+
+
 ## Quick Start
 
 ### Using Docker Compose
