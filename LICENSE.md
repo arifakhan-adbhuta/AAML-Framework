@@ -6,8 +6,11 @@ This software is now licensed under the AAML Public Benefit License v3.0. as of 
 COMMERCIAL USE REQUIRES A LICENSE
 See LICENSE_COMMERCIAL.md for terms.
 
-The original open license below is preserved for reference and applies 
-only to non-commercial use as defined in LICENSE_COMMERCIAL.md.
+
+The original open license below (Copyright 2024) is preserved for reference 
+and historical accuracy. Copyright now extends through 2025 under the
+commercial license framework.
+
 ===========================================
 
 [Original license text continues below...] 
