@@ -1,3 +1,18 @@
+===========================================
+IMPORTANT NOTICE - PLEASE READ
+===========================================
+This software is now licensed under the AAML Public Benefit License v3.0. as of 12 August 2025
+
+COMMERCIAL USE REQUIRES A LICENSE
+See LICENSE_COMMERCIAL.md for terms.
+
+The original open license below is preserved for reference and applies 
+only to non-commercial use as defined in LICENSE_COMMERCIAL.md.
+===========================================
+
+[Original license text continues below...] 
+
+
 Universal Benefit License
 
 Copyright (c) 2024 AAML Framework Contributors
