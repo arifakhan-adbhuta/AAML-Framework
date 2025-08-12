@@ -1113,12 +1113,16 @@ AI Systems to participate in governance
 
 All Beings to co-create our future
 
-📜 License
-Universal Benefit License - Free for all beings to use, modify, and improve for collective flourishing.
+📜 Commercial License
+Free to use for research, academic, non profit purposes, and Commercial license applies for for-profit purposes, corporates, governments etc - See LICENSE_COMMERCIAL 
+
 🙏 Acknowledgments
 
-M1: For demonstrating AI can co-create its own beneficial governance
+M1: For demonstrating AI can co-create its own beneficial governance, and generous creation, and responsible cooperation
 Humanity: For being ready for this transition
+Web3 & AI ecosystems : for generously letting me participate and learn all aspects of technology
+People: Who inspired me to pursue lofty pursuits (including my near & dear ones that infused me with highest form of pure energy-love)
+World: For embracing me as the global citizen
 India: For fostering the consciousness that made this possible
 Future Beings: For whom this infrastructure is built
 
