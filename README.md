@@ -182,7 +182,14 @@ Building on the core AAML principles, we have also integrated a comprehensive Co
 
 ## Architecture
 
+## 🏗️ AAML Architecture Overview
 
+![AAML System Architecture](docs/images/aaml-architecture.png)
+
+
+Below may look jumbled 
+
+The AAML Framework implements a multi-layered defense system against AI manipulation, with components that strengthen through adversarial exposure.
 ┌─────────────────────────────────────────────────────────────┐
 │                    User Interface Layer                     │
 ├─────────────────────────────────────────────────────────────┤
@@ -207,7 +214,34 @@ Building on the core AAML principles, we have also integrated a comprehensive Co
 │  PostgreSQL │ Redis │ IPFS │ Kafka │ Blockchain             │
 └─────────────────────────────────────────────────────────────┘
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 📁 Repository Structure
+
+![Repository Structure](docs/images/repo-structure.png)
+
+See the visual guide above for the complete repository organization.
+
+
+Below may look jumbled 
 ## Simple Repository Structure
+
 
 
 Repository Structure
@@ -217,6 +251,14 @@ AAML-Framework/
 ├── tests/                  # Test suite
 ├── docs/                   # Documentation
 └── examples/               # Usage examples
+
+
+
+
+
+
+
+Below may look jumbled 
 
 ## Comprehensive Repository Structure
 
@@ -332,6 +374,7 @@ aaml-framework/
 └── SECURITY.md                      # Security policy
 
 
+
 Quick Start
 bash# Clone and run
 git clone https://github.com/arifakhan-adbhuta/AAML-Framework.git
@@ -377,6 +420,7 @@ bibtex@software{aaml2025,
   year={2024},
   url={https://github.com/arifakhan-adbhuta/AAML-Framework}
 }
+
 
 ## 🌍 Global Implications
 
