@@ -1135,8 +1135,9 @@ AI Systems to participate in governance
 
 All Beings to co-create our future
 
-📜 Commercial License
-Free to use for research, academic, non profit purposes, and Commercial license applies for for-profit purposes, corporates, governments etc - See LICENSE_COMMERCIAL 
+## License
+
+This project is licensed under the AAML Public Benefit License v3.0 - see [LICENSE_COMMERCIAL.md](LICENSE_COMMERCIAL.md) for commercial terms and [LICENSE](LICENSE) for the original license.
 
 🙏 Acknowledgments
 
