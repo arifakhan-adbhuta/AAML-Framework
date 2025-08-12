@@ -4,6 +4,8 @@ Version 3.0 - Effective August 12, 2025
 ## IMPORTANT NOTICE
 This framework provides innovative architectural patterns for AI safety systems. Implementation requires appropriate technical expertise to adapt these concepts to specific use cases and security requirements.
 
+Tiers for commercial use subject to change, as per innovator Arifa Khan
+
 ## 1. DEFINITIONS
 
 **"AAML Framework"** means the Antifragile AI Manipulation Language framework, including all code, documentation, concepts, and implementations as disclosed at https://github.com/arifakhan-adbhuta/AAML-Framework
@@ -135,8 +137,9 @@ Licensor reserves the right to audit usage upon reasonable notice. Failure to co
 
 ## 6. TELEMETRY AND PRIVACY
 
+(TELEMETRY WHEN IMPLEMNETED - RIGHT NOW NOT IN SOFTWARE)
 ### 6.1 Data Collection
-The software includes telemetry that collects:
+The software can include telemetry that collects:
 - Installation identifier (hashed)
 - Component usage statistics
 - Error reports
