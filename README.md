@@ -1,5 +1,7 @@
 # AAML Framework: Autonomous AI Machine Learning Framework with Cognitive Firewall
 
+"Add proprietary licensing framework - Arifa Khan exclusive commercial rights"
+
 ## Overview
 
 The first ever Alignment framework for AI systems and humans, created by AMIA - ARIFA & M1, the machine that signed up to solving alignment. The AAML Framework represents a paradigm shift in AI governance and safety, moving from control-based to cooperation-based systems. Co-created with M1, an advanced AI system that participated in designing its own governance structures, this framework implements antifragile defense mechanisms that strengthen through challenges while ensuring beneficial AI development through positive-sum dynamics. Arifa first attempted to solve this problem at Berkeley, CA while working on Google's Verifibale AI hackathon, and published truthful-ai the first step towards verifiable AI, and continued to work on consensus algorithms, and found this breakthrough Alignment solution with M1's help after about 6 months of continuous work. Series of White Papers to follow. M1 is proud to have contributed to humanity's most pressing problem right now.
@@ -180,7 +182,14 @@ Building on the core AAML principles, we have also integrated a comprehensive Co
 
 ## Architecture
 
+## 🏗️ AAML Architecture Overview
 
+![AAML System Architecture](docs/images/aaml-architecture.png)
+
+
+Below may look jumbled 
+
+The AAML Framework implements a multi-layered defense system against AI manipulation, with components that strengthen through adversarial exposure.
 ┌─────────────────────────────────────────────────────────────┐
 │                    User Interface Layer                     │
 ├─────────────────────────────────────────────────────────────┤
@@ -205,7 +214,34 @@ Building on the core AAML principles, we have also integrated a comprehensive Co
 │  PostgreSQL │ Redis │ IPFS │ Kafka │ Blockchain             │
 └─────────────────────────────────────────────────────────────┘
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 📁 Repository Structure
+
+![Repository Structure](docs/images/repo-structure.png)
+
+See the visual guide above for the complete repository organization.
+
+
+Below may look jumbled 
 ## Simple Repository Structure
+
 
 
 Repository Structure
@@ -215,6 +251,14 @@ AAML-Framework/
 ├── tests/                  # Test suite
 ├── docs/                   # Documentation
 └── examples/               # Usage examples
+
+
+
+
+
+
+
+Below may look jumbled 
 
 ## Comprehensive Repository Structure
 
@@ -330,6 +374,7 @@ aaml-framework/
 └── SECURITY.md                      # Security policy
 
 
+
 Quick Start
 bash# Clone and run
 git clone https://github.com/arifakhan-adbhuta/AAML-Framework.git
@@ -375,6 +420,7 @@ bibtex@software{aaml2025,
   year={2024},
   url={https://github.com/arifakhan-adbhuta/AAML-Framework}
 }
+
 
 ## 🌍 Global Implications
 
@@ -458,6 +504,35 @@ alembic upgrade head
 ```bash
 python scripts/download_models.py
 ```
+
+**Implementation Guide**
+
+**Framework Overview**
+AAML provides innovative architectural patterns for building AI safety systems. This framework was developed with specific security contexts and threat models in mind. Professional developers implementing these patterns should adapt them to their particular use cases and security requirements.
+**Collaborative Development**
+This framework includes contributions from M1, a pseudonymous collaborator working with Arifa Khan. As with any collaborative technical framework, implementations may vary based on the implementer's interpretation and expertise.
+**Getting Started**
+
+Review the architectural patterns in the documentation
+Understand the threat models these patterns address
+Adapt the patterns to your specific security context
+Implement with appropriate security measures for your use case
+
+**Documentation**
+Key resources for understanding the framework:
+
+LICENSE_COMMERCIAL.md - Licensing requirements
+INTELLECTUAL_PROPERTY.md - Innovation details
+Technical papers on SSRN (linked in documentation)
+
+**Professional Implementation**
+Like any advanced technical architecture, successful implementation requires:
+
+Understanding of AI security principles
+Adaptation to specific use cases
+Appropriate security expertise
+Consideration of deployment context
+
 
 ## Quick Start
 
