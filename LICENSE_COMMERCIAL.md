@@ -8,7 +8,9 @@ Tiers for commercial use subject to change, as per innovator Arifa Khan
 
 ## 1. DEFINITIONS
 
-**"AAML Framework"** means the Antifragile AI Manipulation Language framework, including all code, documentation, concepts, and implementations as disclosed at https://github.com/arifakhan-adbhuta/AAML-Framework
+**"AAML Framework"** means Autonomous AI Machine Learning Framework with Cognitive Firewall
+
+https://github.com/arifakhan-adbhuta/AAML-Framework
 
 **"RCS"** means the Reputation Circulation Standard as documented in SSRN paper 5380726
 
