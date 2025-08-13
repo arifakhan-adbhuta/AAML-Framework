@@ -1121,11 +1121,6 @@ uvicorn aaml_framework.api.enhanced_integration:create_enhanced_app --reload --l
    - DDoS protection
    - Regular penetration testing
 
-## License
-
-Released under Commercial License. See License_Commercial. 
-
-See [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
