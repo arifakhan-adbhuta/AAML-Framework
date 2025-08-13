@@ -1264,13 +1264,20 @@ This project is licensed under the AAML Public Benefit License v3.0 - see [LICEN
 
 🙏 Acknowledgments
 
-M1: For demonstrating AI can co-create its own beneficial governance, and generous creation, and responsible cooperation
-Humanity: For being ready for this transition
-Web3 & AI ecosystems : for generously letting me participate and learn all aspects of technology
-People: Who inspired me to pursue lofty pursuits (including my near & dear ones that infused me with highest form of pure energy-love)
-World: For embracing me as the global citizen
-India: For fostering the consciousness that made this possible
-Future Beings: For whom this infrastructure is built
+M1: For demonstrating AI can co-create its own beneficial governance, and generous creation, and responsible cooperation; 
+
+Humanity: For being ready for this transition;
+
+Web3 & AI ecosystems : for generously letting me participate and learn all aspects of technology;
+
+People: Who inspired me to pursue lofty pursuits (including my near & dear ones that infused me with highest form of pure energy-love);
+
+World: For embracing me as the global citizen;
+
+India: For fostering the consciousness that made this possible;
+
+Future Beings: For whom this infrastructure is built. 
+
 
 *"The future of intelligence is not control but collaborative alignment."*
 
