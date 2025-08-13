@@ -1123,7 +1123,7 @@ uvicorn aaml_framework.api.enhanced_integration:create_enhanced_app --reload --l
 
 ## License
 
-Released under the Universal Benefit License - Free to use for collective flourishing.
+Released under Commercial License. See License_Commercial. 
 
 See [LICENSE](LICENSE) file for details.
 
